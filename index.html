@@ -4,64 +4,283 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>LabourLink - Freelance Marketplace</title>
+  <title>LabourLink | Modern Task Marketplace</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <style>
+    :root {
+      --ink: #05060d;
+      --night: #0a0f24;
+      --shadow: #131833;
+      --line: #1f2746;
+      --ice: #e8ecf5;
+      --blue: #1e6de3;
+      --cyan: #53b3ff;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       background: linear-gradient(to right, #0a0f24, #1a1f3c);
       color: #ffffff;
       font-family: 'Segoe UI', sans-serif;
+      background: radial-gradient(circle at 20% 20%, rgba(30, 109, 227, 0.12), transparent 35%),
+        radial-gradient(circle at 80% 10%, rgba(83, 179, 255, 0.14), transparent 32%),
+        linear-gradient(135deg, var(--night), var(--ink));
+      color: #f7f9ff;
+      font-family: 'Space Grotesk', 'Segoe UI', sans-serif;
+      min-height: 100vh;
     }
+
     .navbar {
       background-color: #0a0f24;
+      background-color: rgba(5, 6, 13, 0.8);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(10px);
     }
+
+    .navbar-brand {
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+
+    .nav-link {
+      color: #dbe4ff !important;
+      font-weight: 500;
+    }
+
+    .nav-link:hover {
+      color: var(--cyan) !important;
+    }
+
+    .btn-outline-light {
+      border-color: #dbe4ff;
+      color: #dbe4ff;
+    }
+
+    .btn-outline-light:hover {
+      background: #dbe4ff;
+      color: var(--ink);
+    }
+
+    .btn-primary {
+      background: linear-gradient(120deg, var(--blue), var(--cyan));
+      border: none;
+      color: #05060d;
+      font-weight: 700;
+    }
+
+    .btn-primary:hover {
+      filter: brightness(1.05);
+      color: #05060d;
+    }
+
+    .btn-ghost {
+      border: 1px solid var(--line);
+      color: #dfe6ff;
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .btn-ghost:hover {
+      border-color: var(--cyan);
+      color: #fff;
+      background: rgba(83, 179, 255, 0.12);
+    }
+
     .hero {
       padding: 100px 0;
       text-align: center;
+      padding: 120px 0 80px;
+      position: relative;
     }
     .hero h1 {
       font-size: 3rem;
       font-weight: bold;
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      inset: 15% auto auto 55%;
+      width: 360px;
+      height: 360px;
+      background: radial-gradient(circle, rgba(83, 179, 255, 0.2) 0%, rgba(83, 179, 255, 0) 65%);
+      filter: blur(10px);
+      z-index: 0;
     }
     .hero p {
       font-size: 1.2rem;
       color: #ccc;
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 16px;
+      border-radius: 999px;
+      background: rgba(30, 109, 227, 0.12);
+      border: 1px solid rgba(83, 179, 255, 0.16);
+      color: #cfe4ff;
+      font-weight: 600;
     }
+
     .section {
       padding: 60px 0;
+      padding: 72px 0;
     }
     .job-card, .review-card {
       background-color: #1e243f;
       border-radius: 10px;
+
+    .card-surface {
+      background: linear-gradient(165deg, rgba(19, 24, 51, 0.9), rgba(10, 15, 36, 0.92));
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 22px;
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.35);
+    }
+
+    .job-card {
+      transition: transform 0.2s ease, border-color 0.2s ease;
+      position: relative;
+    }
+
+    .job-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(83, 179, 255, 0.4);
+    }
+
+    .badge-location {
+      background: rgba(83, 179, 255, 0.14);
+      border: 1px solid rgba(83, 179, 255, 0.35);
+      color: #cfe4ff;
+      font-weight: 600;
+    }
+
+    .location-selector .btn {
+      border-color: var(--line);
+      color: #dfe6ff;
+    }
+
+    .location-selector .btn.active {
+      background: linear-gradient(120deg, var(--blue), var(--cyan));
+      color: #05060d;
+      border: none;
+    }
+
+    .stat-card {
+      border-radius: 14px;
+      border: 1px solid var(--line);
       padding: 20px;
       margin-bottom: 20px;
       box-shadow: 0 0 10px rgba(0,0,0,0.3);
+      background: rgba(255, 255, 255, 0.02);
     }
     .btn-outline-light:hover {
       background-color: #ffffff;
       color: #0a0f24;
+
+    .stat-value {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #fff;
     }
+
+    .verified-badge {
+      color: #4ade80;
+      font-weight: 700;
+    }
+
+    .message-bubble {
+      border-radius: 16px;
+      padding: 14px 16px;
+      margin-bottom: 12px;
+    }
+
+    .message-bubble.me {
+      background: rgba(83, 179, 255, 0.18);
+      border: 1px solid rgba(83, 179, 255, 0.35);
+      color: #eef5ff;
+    }
+
+    .message-bubble.them {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--line);
+      color: #d9e2ff;
+    }
+
+    .rating i {
+      color: #ffd166;
+    }
+
+    .input-dark {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--line);
+      color: #f5f7ff;
+    }
+
+    .input-dark:focus {
+      border-color: var(--cyan);
+      box-shadow: 0 0 0 0.2rem rgba(83, 179, 255, 0.2);
+      color: #fff;
+      background: rgba(255, 255, 255, 0.06);
+    }
+
     footer {
       background-color: #0a0f24;
       padding: 20px 0;
       text-align: center;
       color: #ccc;
+      border-top: 1px solid var(--line);
+      padding: 32px 0;
+      color: #cdd7f5;
+    }
+
+    .mini-title {
+      letter-spacing: 0.08em;
+      font-size: 0.85rem;
+      color: #a6b4df;
+    }
+
+    .divider {
+      height: 1px;
+      background: var(--line);
+      margin: 14px 0;
+    }
+
+    @media (max-width: 991px) {
+      .hero {
+        padding-top: 96px;
+      }
     }
   </style>
 </head>
 <body>
 
   <nav class="navbar navbar-expand-lg navbar-dark">
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
     <div class="container">
       <a class="navbar-brand" href="#"><i class="fa-solid fa-helmet-safety me-2"></i>LabourLink</a>
+      <a class="navbar-brand d-flex align-items-center gap-2" href="#">
+        <i class="fa-solid fa-screwdriver-wrench text-info"></i>
+        LabourLink
+      </a>
       <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#nav">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div id="nav" class="collapse navbar-collapse">
         <ul class="navbar-nav ms-auto">
           <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+        <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-3">
           <li class="nav-item"><a class="nav-link" href="#jobs">Jobs</a></li>
+          <li class="nav-item"><a class="nav-link" href="#post">Post</a></li>
+          <li class="nav-item"><a class="nav-link" href="#messages">Messaging</a></li>
           <li class="nav-item"><a class="nav-link" href="#reviews">Reviews</a></li>
+          <li class="nav-item"><a class="btn btn-primary ms-lg-2" href="#post">Get Started</a></li>
         </ul>
       </div>
     </div>
@@ -73,17 +292,192 @@
       <p class="mt-3">Connect with skilled local workers & clients today</p>
       <a href="#jobs" class="btn btn-outline-light mt-4 me-2">Browse Jobs</a>
       <a href="#post" class="btn btn-light mt-4">Post a Job</a>
+    <div class="container position-relative">
+      <div class="row align-items-center g-5">
+        <div class="col-lg-6 position-relative">
+          <div class="pill mb-4"><i class="fa-solid fa-location-dot"></i> Saint John · Fredericton · Moncton</div>
+          <h1 class="display-4 fw-bold mb-4">Book trusted help or list your skills in minutes.</h1>
+          <p class="fs-5 text-light mb-4">LabourLink is a modern task marketplace built for Atlantic Canada. Post jobs, verify pros, and message securely—all in a minimalist black + blue workspace.</p>
+          <div class="d-flex gap-3 flex-wrap">
+            <a href="#post" class="btn btn-primary btn-lg">Post a job</a>
+            <a href="#jobs" class="btn btn-ghost btn-lg">Browse jobs</a>
+          </div>
+          <div class="d-flex gap-4 mt-5 flex-wrap">
+            <div class="stat-card">
+              <p class="mini-title mb-1">AVG. RATING</p>
+              <div class="stat-value d-flex align-items-center gap-2">4.9 <span class="rating text-warning"><i class="fa-solid fa-star"></i></span></div>
+              <small class="text-secondary">Community vetted pros</small>
+            </div>
+            <div class="stat-card">
+              <p class="mini-title mb-1">VERIFIED WORKERS</p>
+              <div class="stat-value">1,240</div>
+              <small class="text-secondary">ID + background checks</small>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="card-surface">
+            <p class="mini-title mb-3">LIVE SAFETY SNAPSHOT</p>
+            <div class="d-flex align-items-center mb-3">
+              <div class="me-3 text-success"><i class="fa-solid fa-shield-halved fa-xl"></i></div>
+              <div>
+                <p class="mb-1 fw-semibold">Verified & insured pros</p>
+                <small class="text-secondary">All blue-badge workers have ID, background, and credential checks completed.</small>
+              </div>
+            </div>
+            <div class="divider"></div>
+            <div class="d-flex align-items-start gap-3 mb-3">
+              <div class="text-info"><i class="fa-solid fa-map-location-dot fa-lg"></i></div>
+              <div>
+                <p class="mb-1 fw-semibold">Local-first availability</p>
+                <small class="text-secondary">Real-time matching across Saint John, Fredericton, and Moncton with travel-ready pros.</small>
+              </div>
+            </div>
+            <div class="d-flex align-items-start gap-3">
+              <div class="text-warning"><i class="fa-solid fa-comments fa-lg"></i></div>
+              <div>
+                <p class="mb-1 fw-semibold">Secure messaging</p>
+                <small class="text-secondary">Keep quotes, images, and updates in one encrypted thread before hiring.</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </header>
 
   <section id="about" class="section text-center">
+  <section id="jobs" class="section">
     <div class="container">
       <h2 class="mb-4">About LabourLink</h2>
       <p class="lead">LabourLink is a modern task-based freelance platform where local workers and clients collaborate with trust and transparency. From cleaning to coding, find reliable talent or job opportunities near you.</p>
+      <div class="d-flex flex-wrap align-items-center justify-content-between gap-3 mb-4">
+        <div>
+          <p class="mini-title mb-1">ACTIVE LISTINGS</p>
+          <h2 class="fw-bold">Browse jobs by location</h2>
+        </div>
+        <div class="btn-group location-selector" role="group" aria-label="Filter jobs by city">
+          <button class="btn btn-sm btn-ghost active" data-location="all">All</button>
+          <button class="btn btn-sm btn-ghost" data-location="saint john">Saint John</button>
+          <button class="btn btn-sm btn-ghost" data-location="fredericton">Fredericton</button>
+          <button class="btn btn-sm btn-ghost" data-location="moncton">Moncton</button>
+        </div>
+      </div>
+
+      <div class="row g-4" id="job-grid">
+        <div class="col-lg-4 col-md-6 job" data-location="moncton">
+          <div class="card-surface job-card h-100">
+            <div class="d-flex justify-content-between mb-2">
+              <span class="badge badge-location">Moncton</span>
+              <span class="text-success fw-semibold"><i class="fa-solid fa-circle-check"></i> Verified poster</span>
+            </div>
+            <h5 class="mb-2">Furniture Assembly & Mounting</h5>
+            <p class="text-secondary mb-2">Condo near Main St • $120 flat</p>
+            <p class="mb-3">Mount a 65" TV and assemble two IKEA dressers. Bring wall anchors and stud finder.</p>
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="d-flex align-items-center gap-2 text-secondary">
+                <i class="fa-solid fa-clock"></i><small> Tomorrow, 10am</small>
+              </div>
+              <button class="btn btn-outline-light btn-sm">View & message</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6 job" data-location="saint john">
+          <div class="card-surface job-card h-100">
+            <div class="d-flex justify-content-between mb-2">
+              <span class="badge badge-location">Saint John</span>
+              <span class="text-success fw-semibold"><i class="fa-solid fa-circle-check"></i> Verified poster</span>
+            </div>
+            <h5 class="mb-2">Deep Clean: 2-Bedroom Apartment</h5>
+            <p class="text-secondary mb-2">Uptown • $160 • Cleaning</p>
+            <p class="mb-3">Looking for a trusted cleaner for a detailed move-out clean. Supplies provided if needed.</p>
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="d-flex align-items-center gap-2 text-secondary">
+                <i class="fa-solid fa-clock"></i><small> This weekend</small>
+              </div>
+              <button class="btn btn-outline-light btn-sm">View & message</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6 job" data-location="fredericton">
+          <div class="card-surface job-card h-100">
+            <div class="d-flex justify-content-between mb-2">
+              <span class="badge badge-location">Fredericton</span>
+              <span class="text-success fw-semibold"><i class="fa-solid fa-circle-check"></i> Verified poster</span>
+            </div>
+            <h5 class="mb-2">Part-time Dog Walker</h5>
+            <p class="text-secondary mb-2">Downtown trail • $25/hr</p>
+            <p class="mb-3">Two medium dogs need weekday afternoon walks. Must be comfortable with energetic pups.</p>
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="d-flex align-items-center gap-2 text-secondary">
+                <i class="fa-solid fa-clock"></i><small> M/W/F, 3pm</small>
+              </div>
+              <button class="btn btn-outline-light btn-sm">View & message</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6 job" data-location="remote">
+          <div class="card-surface job-card h-100">
+            <div class="d-flex justify-content-between mb-2">
+              <span class="badge badge-location">Remote</span>
+              <span class="text-success fw-semibold"><i class="fa-solid fa-circle-check"></i> Verified poster</span>
+            </div>
+            <h5 class="mb-2">Website Refresh & SEO</h5>
+            <p class="text-secondary mb-2">NB-based startup • $600</p>
+            <p class="mb-3">Upgrade a marketing site with modern UI, analytics, and basic SEO tuning. Figma ready.</p>
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="d-flex align-items-center gap-2 text-secondary">
+                <i class="fa-solid fa-clock"></i><small> Next 7 days</small>
+              </div>
+              <button class="btn btn-outline-light btn-sm">View & message</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6 job" data-location="moncton">
+          <div class="card-surface job-card h-100">
+            <div class="d-flex justify-content-between mb-2">
+              <span class="badge badge-location">Moncton</span>
+              <span class="text-success fw-semibold"><i class="fa-solid fa-circle-check"></i> Verified poster</span>
+            </div>
+            <h5 class="mb-2">Snow Removal On-Call</h5>
+            <p class="text-secondary mb-2">North End • $45/visit</p>
+            <p class="mb-3">On-demand shoveling and salting for driveway + walkway. Text before arrival.</p>
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="d-flex align-items-center gap-2 text-secondary">
+                <i class="fa-solid fa-clock"></i><small> Seasonal</small>
+              </div>
+              <button class="btn btn-outline-light btn-sm">View & message</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6 job" data-location="saint john">
+          <div class="card-surface job-card h-100">
+            <div class="d-flex justify-content-between mb-2">
+              <span class="badge badge-location">Saint John</span>
+              <span class="text-success fw-semibold"><i class="fa-solid fa-circle-check"></i> Verified poster</span>
+            </div>
+            <h5 class="mb-2">Handyman: Drywall Patch & Paint</h5>
+            <p class="text-secondary mb-2">Milledgeville • $220</p>
+            <p class="mb-3">Repair two small drywall holes and repaint to match eggshell white. Materials reimbursed.</p>
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="d-flex align-items-center gap-2 text-secondary">
+                <i class="fa-solid fa-clock"></i><small> Flexible</small>
+              </div>
+              <button class="btn btn-outline-light btn-sm">View & message</button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
   <section id="jobs" class="section">
+  <section id="post" class="section">
     <div class="container">
       <h2 class="mb-4 text-center"><i class="fa-solid fa-briefcase me-2"></i>Latest Jobs</h2>
       <div class="row">
@@ -92,6 +486,80 @@
             <h5>🛠 Furniture Assembly</h5>
             <p class="text-muted">Moncton • $75 • Home Services</p>
             <p>Need help assembling IKEA furniture in my apartment. Must have own tools.</p>
+      <div class="row g-4 align-items-start">
+        <div class="col-lg-5">
+          <p class="mini-title mb-2">POST IN UNDER 2 MINUTES</p>
+          <h2 class="fw-bold mb-3">Create a job and share details your way.</h2>
+          <p class="text-secondary mb-4">LabourLink keeps everything organized: pricing, availability, verified IDs, and messaging stay in one thread so both sides stay aligned.</p>
+          <ul class="list-unstyled text-secondary mb-4">
+            <li class="mb-2"><i class="fa-solid fa-check text-success me-2"></i> Location-first routing across Saint John, Fredericton, and Moncton.</li>
+            <li class="mb-2"><i class="fa-solid fa-check text-success me-2"></i> Optional verification badges for posters and workers.</li>
+            <li class="mb-2"><i class="fa-solid fa-check text-success me-2"></i> Attach media, share live rates, and negotiate in real-time messaging.</li>
+          </ul>
+          <div class="card-surface">
+            <div class="d-flex align-items-center gap-3 mb-2">
+              <div class="verified-badge"><i class="fa-solid fa-shield-halved"></i></div>
+              <div>
+                <p class="mb-0 fw-semibold">Blue badge verification</p>
+                <small class="text-secondary">Verified users complete ID + background checks and can display credentials.</small>
+              </div>
+            </div>
+            <div class="divider"></div>
+            <p class="mb-1 fw-semibold">Why verify?</p>
+            <small class="text-secondary">Faster approvals, higher ranking in search, and trust signals in chats and reviews.</small>
+          </div>
+        </div>
+        <div class="col-lg-7">
+          <div class="card-surface">
+            <form class="row g-3" id="post-form">
+              <div class="col-md-6">
+                <label class="form-label">Job title</label>
+                <input type="text" class="form-control input-dark" placeholder="e.g., Assemble patio set" required />
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Budget</label>
+                <input type="text" class="form-control input-dark" placeholder="$150 flat or $30/hr" required />
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Location</label>
+                <select class="form-select input-dark" required>
+                  <option value="">Select</option>
+                  <option>Saint John</option>
+                  <option>Fredericton</option>
+                  <option>Moncton</option>
+                  <option>Remote</option>
+                </select>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Preferred date/time</label>
+                <input type="datetime-local" class="form-control input-dark" />
+              </div>
+              <div class="col-12">
+                <label class="form-label">Job details</label>
+                <textarea class="form-control input-dark" rows="4" placeholder="Share scope, access, tools required, and any photos or references." required></textarea>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Need a verified pro?</label>
+                <select class="form-select input-dark" required>
+                  <option>Yes, blue-badge only</option>
+                  <option>No, open to all</option>
+                </select>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Allow messaging</label>
+                <select class="form-select input-dark" required>
+                  <option>Yes, reply to quotes</option>
+                  <option>Yes, but approve first</option>
+                </select>
+              </div>
+              <div class="col-12 d-flex align-items-center gap-3">
+                <button class="btn btn-primary px-4" type="submit">Publish job</button>
+                <small class="text-secondary">A confirmation will be sent to your inbox.</small>
+              </div>
+            </form>
+            <div id="post-success" class="alert alert-success mt-3 d-none mb-0" role="alert">
+              Job submitted! A LabourLink coordinator will boost it across Saint John, Fredericton, and Moncton.
+            </div>
           </div>
         </div>
         <div class="col-md-6">
@@ -99,6 +567,59 @@
             <h5>🧹 Weekly House Cleaner</h5>
             <p class="text-muted">Saint John • $100 • Cleaning</p>
             <p>Looking for someone to clean my 2-bedroom apartment every Friday.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="messages" class="section">
+    <div class="container">
+      <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-3">
+        <div>
+          <p class="mini-title mb-1">MESSAGING & QUOTES</p>
+          <h2 class="fw-bold">Keep every update in a single secure thread.</h2>
+        </div>
+        <span class="pill"><i class="fa-solid fa-lock"></i> End-to-end encrypted</span>
+      </div>
+      <div class="row g-4">
+        <div class="col-lg-4">
+          <div class="card-surface h-100">
+            <div class="d-flex align-items-center justify-content-between mb-3">
+              <h6 class="mb-0">Conversations</h6>
+              <span class="badge bg-info text-dark">4 new</span>
+            </div>
+            <div class="input-group mb-3">
+              <span class="input-group-text input-dark border-0"><i class="fa-solid fa-search"></i></span>
+              <input type="text" class="form-control input-dark" placeholder="Search people or jobs" />
+            </div>
+            <div class="list-group list-group-flush">
+              <a class="list-group-item list-group-item-action bg-transparent text-white border-0 px-0 py-2 active" aria-current="true">
+                <div class="d-flex align-items-center justify-content-between">
+                  <div>
+                    <p class="mb-0 fw-semibold">Jessica (Verified)</p>
+                    <small class="text-secondary">House clean · Saint John</small>
+                  </div>
+                  <span class="badge bg-success">Pro</span>
+                </div>
+              </a>
+              <a class="list-group-item list-group-item-action bg-transparent text-white border-0 px-0 py-2">
+                <div class="d-flex align-items-center justify-content-between">
+                  <div>
+                    <p class="mb-0 fw-semibold">Daniel (Verified)</p>
+                    <small class="text-secondary">Web update · Remote</small>
+                  </div>
+                  <span class="badge bg-success">Pro</span>
+                </div>
+              </a>
+              <a class="list-group-item list-group-item-action bg-transparent text-white border-0 px-0 py-2">
+                <div class="d-flex align-items-center justify-content-between">
+                  <div>
+                    <p class="mb-0 fw-semibold">Mike</p>
+                    <small class="text-secondary">Mounting · Moncton</small>
+                  </div>
+                  <span class="badge bg-secondary">New</span>
+                </div>
+              </a>
+            </div>
           </div>
         </div>
         <div class="col-md-6">
@@ -106,6 +627,33 @@
             <h5>💻 Simple Website Update</h5>
             <p class="text-muted">Remote • $150 • Web Dev</p>
             <p>Update a landing page for a local business. HTML/CSS only.</p>
+        <div class="col-lg-8">
+          <div class="card-surface h-100">
+            <div class="d-flex align-items-center justify-content-between mb-3">
+              <div>
+                <p class="mb-0 fw-semibold">Jessica • Verified Cleaner</p>
+                <small class="text-secondary">Saint John • Rating 4.9</small>
+              </div>
+              <div class="d-flex align-items-center gap-2">
+                <span class="verified-badge"><i class="fa-solid fa-circle-check"></i> ID verified</span>
+                <button class="btn btn-ghost btn-sm">View profile</button>
+              </div>
+            </div>
+            <div class="divider"></div>
+            <div id="chat-thread" class="mb-3" style="max-height: 280px; overflow-y: auto;">
+              <div class="message-bubble them">
+                <p class="mb-1">Hi! I can take the Saturday morning clean. I bring eco-friendly supplies.</p>
+                <small class="text-secondary">09:12</small>
+              </div>
+              <div class="message-bubble me">
+                <p class="mb-1">Perfect. Budget is $160 for deep clean. Does that work?</p>
+                <small class="text-secondary">09:14</small>
+              </div>
+            </div>
+            <form id="chat-form" class="d-flex gap-2">
+              <input id="chat-input" type="text" class="form-control input-dark" placeholder="Send a secure message" required />
+              <button class="btn btn-primary" type="submit"><i class="fa-solid fa-paper-plane"></i></button>
+            </form>
           </div>
         </div>
       </div>
@@ -113,6 +661,7 @@
   </section>
 
   <section id="reviews" class="section bg-dark text-white">
+  <section id="reviews" class="section">
     <div class="container">
       <h2 class="mb-4 text-center"><i class="fa-solid fa-star me-2"></i>Recent Reviews</h2>
       <div class="row">
@@ -120,18 +669,68 @@
           <div class="review-card">
             <p>“Sarah was amazing! Cleaned our whole house top to bottom and was super friendly.”</p>
             <small>— Jessica, Fredericton</small>
+      <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-3">
+        <div>
+          <p class="mini-title mb-1">REVIEWS & RATINGS</p>
+          <h2 class="fw-bold">See why locals trust LabourLink pros.</h2>
+        </div>
+        <span class="pill">Average rating 4.9/5</span>
+      </div>
+      <div class="row g-4">
+        <div class="col-lg-4 col-md-6">
+          <div class="card-surface h-100">
+            <div class="d-flex justify-content-between mb-2">
+              <div class="rating" aria-label="4.9 out of 5 stars">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star-half-stroke"></i>
+              </div>
+              <span class="badge badge-location">Fredericton</span>
+            </div>
+            <p class="fw-semibold mb-1">“Cleaned our whole house top to bottom. Super respectful of our dog too.”</p>
+            <small class="text-secondary">Jessica • Verified Cleaner</small>
           </div>
         </div>
         <div class="col-md-6">
           <div class="review-card">
             <p>“Great communication, fast work. Will hire Daniel again for web fixes.”</p>
             <small>— Tom, Remote Client</small>
+        <div class="col-lg-4 col-md-6">
+          <div class="card-surface h-100">
+            <div class="d-flex justify-content-between mb-2">
+              <div class="rating" aria-label="5 out of 5 stars">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+              </div>
+              <span class="badge badge-location">Saint John</span>
+            </div>
+            <p class="fw-semibold mb-1">“Mounted the TV perfectly and left the space spotless. Showed up early.”</p>
+            <small class="text-secondary">Mike • Homeowner</small>
           </div>
         </div>
         <div class="col-md-6">
           <div class="review-card">
             <p>“Was on time, assembled the dresser perfectly. 10/10.”</p>
             <small>— Mike, Saint John</small>
+        <div class="col-lg-4 col-md-6">
+          <div class="card-surface h-100">
+            <div class="d-flex justify-content-between mb-2">
+              <div class="rating" aria-label="4.8 out of 5 stars">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star-half-stroke"></i>
+              </div>
+              <span class="badge badge-location">Moncton</span>
+            </div>
+            <p class="fw-semibold mb-1">“Fast responses in chat and delivered the web changes exactly as requested.”</p>
+            <small class="text-secondary">Daniel • Verified Developer</small>
           </div>
         </div>
       </div>
@@ -139,19 +738,77 @@
   </section>
 
   <section id="post" class="section text-center">
+  <section class="section text-center">
     <div class="container">
       <h2 class="mb-3">Ready to get started?</h2>
       <a href="#" class="btn btn-light btn-lg me-3">Post a Job</a>
       <a href="#" class="btn btn-outline-light btn-lg">Find Work</a>
+      <div class="card-surface p-5">
+        <p class="mini-title mb-2">BUILT FOR BUSY LOCALS</p>
+        <h2 class="fw-bold mb-3">Hire confidently or get booked faster.</h2>
+        <p class="text-secondary mb-4">Post your task, chat, verify, and confirm in one sleek workspace. From Saint John to Moncton, LabourLink keeps projects moving.</p>
+        <div class="d-flex gap-3 justify-content-center flex-wrap">
+          <a class="btn btn-primary btn-lg" href="#post">Post a job</a>
+          <a class="btn btn-outline-light btn-lg" href="#jobs">View jobs</a>
+        </div>
+      </div>
     </div>
   </section>
 
   <footer>
+  <footer class="text-center">
     <div class="container">
       &copy; 2025 LabourLink. Built with ❤️ in NB.
+      <p class="mb-2">&copy; 2025 LabourLink. Built with pride in Saint John, Fredericton, and Moncton.</p>
+      <small class="text-secondary">Minimalist black + white + dark blue palette • Secure messaging • Verified community</small>
     </div>
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    const locationButtons = document.querySelectorAll('.location-selector .btn');
+    const jobs = document.querySelectorAll('#job-grid .job');
+    const postForm = document.getElementById('post-form');
+    const postSuccess = document.getElementById('post-success');
+    const chatForm = document.getElementById('chat-form');
+    const chatInput = document.getElementById('chat-input');
+    const chatThread = document.getElementById('chat-thread');
+
+    locationButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        locationButtons.forEach((btn) => btn.classList.remove('active'));
+        button.classList.add('active');
+        const target = button.dataset.location;
+        jobs.forEach((job) => {
+          const city = job.dataset.location;
+          if (target === 'all' || city === target) {
+            job.classList.remove('d-none');
+          } else {
+            job.classList.add('d-none');
+          }
+        });
+      });
+    });
+
+    postForm.addEventListener('submit', (event) => {
+      event.preventDefault();
+      postSuccess.classList.remove('d-none');
+      postForm.reset();
+      postSuccess.scrollIntoView({ behavior: 'smooth' });
+    });
+
+    chatForm.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const text = chatInput.value.trim();
+      if (!text) return;
+      const bubble = document.createElement('div');
+      bubble.className = 'message-bubble me';
+      bubble.innerHTML = `<p class="mb-1"></p><small class="text-secondary">Now</small>`;
+      bubble.querySelector('p').textContent = text;
+      chatThread.appendChild(bubble);
+      chatInput.value = '';
+      chatThread.scrollTop = chatThread.scrollHeight;
+    });
+  </script>
 </body>
 </html>
